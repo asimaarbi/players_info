@@ -88,8 +88,13 @@ def account():
 
 @app.route("/player")
 def player():
+    playerss = []
     players = Player.query.all()
-    return render_template('player.html', title='Player', players=players)
+    for player in players:
+        image_file = url_for('static', filename='profile_pics/' + player.player_image)
+        player.player_image = image_file
+        playerss.append(player)
+    return render_template('player.html', title='Player', players=playerss)
 
 
 @app.route("/player/new", methods=['GET', 'POST'])
@@ -109,5 +114,9 @@ def new_player():
 
 @app.route("/player_info/<uid>", methods=['GET', 'POST'])
 def player_info(uid):
-    players = Player.query.filter_by(id=uid).all()
+    players = []
+    player = Player.query.get(uid)
+    image_file = url_for('static', filename='profile_pics/' + player.player_image)
+    player.player_image = image_file
+    players.append(player)
     return render_template('player_info.html', title='Player Information', players=players)
