@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% for player in players %}
+<div class="content-selection">
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ player_image }}">
+        <div class="media-body">
+            <h2 class="account-heading">Players Name: {{ player.player_name }}</h2>
+            <h6>Players Country:<p class="text-secondary"> {{ player.player_country }}</p></h6>
+            <p class="text-secondary">Players Stats: {{ player.player_stats }}</p>
+            <p class="text-secondary">Players Style: {{ player.player_style }}</p>
+            <p class="text-secondary">Players Average: {{ player.player_average }}</p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
