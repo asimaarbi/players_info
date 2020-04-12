@@ -107,7 +107,7 @@ def new_player():
     return render_template('create_player.html', title='Player', form=form)
 
 
-@app.route("/player_info", methods=['GET', 'POST'])
-def player_info():
-    players = Player.query.all()
+@app.route("/player_info/<uid>", methods=['GET', 'POST'])
+def player_info(uid):
+    players = Player.query.filter_by(id=uid).all()
     return render_template('player_info.html', title='Player Information', players=players)
